@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="brand"><view class="brand-name">群<text>拾</text></view><navigator class="text-link" url="/pages/tasks/index">我的待办 {{taskCount ? '· ' + taskCount : ''}}</navigator></view>
+  <view class="title"><view>群消息里的事，</view><view>一件也不漏。</view></view>
+  <view class="subtitle"><view>把通知交给群拾，核对后存成待办。</view><view>从截图或一段文字开始。</view></view>
+  <view class="section">
+    <view class="row"><text class="section-label">通知内容</text><button class="plain" bindtap="paste" disabled="{{busy}}">粘贴文字</button></view>
+    <view class="sheet"><textarea value="{{text}}" bindinput="onText" disabled="{{busy}}" maxlength="20000" placeholder="粘贴群通知，例如：请在10月25日前提交报名表……" placeholder-class="placeholder"/><view class="row"><text class="muted">{{text.length}} / 20000</text><button class="plain" bindtap="useSample" disabled="{{busy}}">试试演示通知</button></view></view>
+  </view>
+  <view class="section">
+    <view class="row"><text class="section-label">或上传截图</text><text class="muted">最多 4 张 · 每张 ≤ 2MB</text></view>
+    <view class="images"><view class="image-wrap" wx:for="{{images}}" wx:key="path"><image class="thumb" src="{{item.path}}" mode="aspectFill" bindtap="previewImage" data-path="{{item.path}}"/><button class="image-remove" bindtap="removeImage" data-index="{{index}}" disabled="{{busy}}" aria-label="删除这张截图">删除</button></view></view>
+    <button class="secondary" bindtap="chooseImages" disabled="{{busy || images.length >= 4}}">选择群聊截图</button>
+  </view>
+  <view class="section row"><view><text class="section-label">通知发送日期（选填）</text><text class="muted">帮助理解“明天”“周五”等表述</text></view><view><picker mode="date" value="{{referenceDate}}" bindchange="setReference" disabled="{{busy}}"><view class="text-link">{{referenceDate || '选择日期'}}</view></picker><button wx:if="{{referenceDate}}" class="plain" bindtap="clearReference" disabled="{{busy}}">清除日期</button></view></view>
+  <checkbox-group class="consent" bindchange="consentChanged"><label><checkbox value="agree" checked="{{consent}}" disabled="{{busy}}" color="#245ac5"/><text>我同意将本次内容发送至整理服务；启用 AI 时会交给配置的模型服务商处理。请先遮挡无关姓名、头像等信息。</text></label></checkbox-group>
+  <view wx:if="{{error}}" class="error" role="alert">{{error}}</view>
+  <view class="actions"><button class="primary" loading="{{busy}}" disabled="{{busy}}" bindtap="submit">{{busy ? '正在整理，请稍候' : '整理成待办'}}</button></view>
+  <view class="footer-note muted">不会读取群历史。待办保存在本机，截图由你主动选择。</view>
+</view>

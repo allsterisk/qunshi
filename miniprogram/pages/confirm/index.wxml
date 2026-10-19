@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="title">{{editing ? '把细节补完整。' : '核对一下，再收好。'}}</view>
+  <view class="subtitle">{{editing ? '修改后保存，原始通知仍会保留。' : '标题、日期和地点都可以修改。暂不确定的日期可以留空。'}}</view>
+  <view class="section notice">{{notice || '请核对识别结果。'}}<view wx:if="{{mode === 'rules'}}">规则体验不会理解复杂语义，涉及变更的事项请手动合并。</view></view>
+  <view wx:if="{{!tasks.length}}" class="empty"><view class="empty-title">没有找到明确的待办</view><view class="muted">可以补充包含“提交、报名、参加”等行动的通知，再试一次。</view><button class="secondary" bindtap="goBack">返回导入</button></view>
+  <view class="review-task section" wx:for="{{tasks}}" wx:key="id" wx:for-item="task" wx:for-index="taskIndex">
+    <view class="row"><text class="section-label">待办 {{taskIndex + 1}}</text><checkbox-group bindchange="toggle" data-index="{{taskIndex}}"><label><checkbox checked="{{task.selected}}" disabled="{{busy}}" color="#245ac5"/>保存此条</label></checkbox-group></view>
+    <view class="field"><text class="field-label">事项标题</text><input value="{{task.title}}" maxlength="100" bindinput="fieldChanged" data-index="{{taskIndex}}" data-field="title" disabled="{{busy}}"/></view>
+    <view class="field"><text class="field-label">截止或发生日期 · 请核对原文含义</text><view class="row"><picker class="grow" mode="date" value="{{task.dueDate}}" bindchange="fieldChanged" data-index="{{taskIndex}}" data-field="dueDate" disabled="{{busy}}"><view class="picker-value">{{task.dueDate || '选择日期（可留空）'}}</view></picker><button wx:if="{{task.dueDate}}" class="plain" bindtap="clearDate" data-index="{{taskIndex}}" disabled="{{busy}}">清除</button></view></view>
+    <view class="field"><text class="field-label">时间（选填）</text><view class="row"><picker class="grow" mode="time" value="{{task.dueTime}}" bindchange="fieldChanged" data-index="{{taskIndex}}" data-field="dueTime" disabled="{{busy || !task.dueDate}}"><view class="picker-value">{{task.dueTime || (task.dueDate ? '选择时间' : '先选择日期')}}</view></picker><button wx:if="{{task.dueTime}}" class="plain" bindtap="clearTime" data-index="{{taskIndex}}" disabled="{{busy}}">清除</button></view></view>
+    <view class="field"><text class="field-label">地点（选填）</text><input value="{{task.location}}" placeholder="原文未说明，可留空" maxlength="200" bindinput="fieldChanged" data-index="{{taskIndex}}" data-field="location" disabled="{{busy}}"/></view>
+    <view class="field"><text class="field-label">需要准备（用顿号分隔）</text><input value="{{task.materialsText}}" placeholder="例如：报名表、个人简介" maxlength="2000" bindinput="fieldChanged" data-index="{{taskIndex}}" data-field="materialsText" disabled="{{busy}}"/></view>
+    <view class="field"><text class="field-label">备注（选填）</text><textarea value="{{task.notes}}" maxlength="1000" bindinput="fieldChanged" data-index="{{taskIndex}}" data-field="notes" disabled="{{busy}}" auto-height/></view>
+    <view wx:if="{{task.warnings.length}}" class="notice field"><view wx:for="{{task.warnings}}" wx:key="*this">{{item}}</view><text class="muted">以上为识别时的提示，编辑字段后仍保留供核对。</text></view>
+    <view wx:if="{{task.sourceQuote}}" class="field"><text class="field-label">{{images.length ? '识别片段 · 请对照原图' : '原文出处'}}</text><view class="quote">{{task.sourceQuote}}</view></view>
+  </view>
+  <view wx:if="{{sourceText}}" class="section"><text class="section-label">完整通知</text><view class="quote">{{sourceText}}</view></view>
+  <view wx:if="{{images.length}}" class="section"><text class="section-label">原始截图 · 点击核对</text><view class="source-images"><image wx:for="{{images}}" wx:key="*this" src="{{item}}" mode="aspectFill" data-path="{{item}}" bindtap="preview"/></view></view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view wx:if="{{tasks.length}}" class="actions"><button class="primary" loading="{{busy}}" disabled="{{busy || !selectedCount}}" bindtap="save">{{editing ? '保存修改' : '确认保存（' + selectedCount + '）'}}</button><view class="muted save-note">保存到本机。当前版本不发送到期提醒。</view></view>
+</view>

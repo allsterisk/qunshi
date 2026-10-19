@@ -1,0 +1,15 @@
+{
+  "description": "群拾 Qunshi — Turn group notices into actionable tasks",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "qunshi",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "libVersion": "latest"
+}

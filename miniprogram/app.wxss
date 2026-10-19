@@ -1,0 +1,41 @@
+/* THESIS: source-first task capture. OWN-WORLD: cool paper, ink, cobalt and ruled rows.
+   STORY: import > inspect > save. FIRST VIEWPORT: task headline, input, primary action.
+   seed: 001fcc56. Native mini-program, operate mode; no decorative asset dependency. */
+page { background: #f6f8fa; color: #182331; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 28rpx; }
+view, text, input, textarea, button { box-sizing: border-box; }
+.page { padding: 32rpx 36rpx 100rpx; }
+.brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 46rpx; }
+.brand-name { font-weight: 700; font-size: 36rpx; letter-spacing: 2rpx; }
+.brand-name text { color: #245ac5; }
+.text-link { color: #245ac5; font-size: 26rpx; padding: 12rpx 0 12rpx 20rpx; }
+.title { font-size: 52rpx; line-height: 1.35; font-weight: 700; letter-spacing: -1rpx; }
+.subtitle { color: #536373; line-height: 1.8; margin-top: 16rpx; }
+.section { margin-top: 40rpx; }
+.section-label { font-weight: 600; margin-bottom: 16rpx; display: block; }
+.muted { color: #536373; font-size: 24rpx; line-height: 1.7; }
+.sheet { background: #fff; border: 1rpx solid #d8e0e8; border-radius: 24rpx; padding: 28rpx; }
+textarea { width: 100%; min-height: 300rpx; line-height: 1.8; font-size: 28rpx; }
+.placeholder { color: #647382; }
+button { font-size: 28rpx; border-radius: 16rpx; font-weight: 600; margin: 0; line-height: 1.5; padding: 24rpx; }
+button::after { border: 0; }
+.primary { background: #245ac5; color: white; }
+.primary[disabled] { background: #dce3ee; color: #596779; }
+.secondary { background: #e8eef8; color: #204d9d; }
+.plain { background: transparent; color: #245ac5; padding: 16rpx 0; font-weight: 500; text-align: left; }
+.danger { color: #ab2935; }
+.error { color: #9c2531; background: #fff0f1; padding: 24rpx; border-radius: 16rpx; line-height: 1.7; margin-top: 24rpx; }
+.notice { color: #704e12; background: #fff4d9; padding: 24rpx; border-radius: 16rpx; font-size: 25rpx; line-height: 1.75; }
+.actions { margin-top: 32rpx; }
+.actions button + button { margin-top: 16rpx; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; }
+.divider { border-top: 1rpx solid #d8e0e8; margin-top: 32rpx; padding-top: 24rpx; }
+.field { margin-top: 24rpx; }
+.field-label { color: #536373; font-size: 24rpx; display: block; margin-bottom: 10rpx; }
+.field input, .field textarea, .picker-value { background: #f2f5f8; border-radius: 12rpx; padding: 20rpx; width: 100%; font-size: 28rpx; min-height: 80rpx; }
+.field textarea { min-height: 140rpx; }
+.tag { font-size: 23rpx; color: #24519c; background: #e8eef8; border-radius: 8rpx; padding: 6rpx 14rpx; display: inline-block; }
+.quote { color: #415263; font-size: 25rpx; line-height: 1.8; white-space: pre-wrap; overflow-wrap: break-word; background: #eef2f6; padding: 24rpx; border-radius: 12rpx; margin-top: 12rpx; }
+.empty { text-align: center; padding: 96rpx 12rpx; }
+.empty-title { font-size: 34rpx; font-weight: 600; margin-bottom: 20rpx; }
+.empty button { margin-top: 32rpx; }
+.small-button { padding: 16rpx 24rpx; font-size: 25rpx; }

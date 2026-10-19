@@ -1,0 +1,14 @@
+.filters { display: flex; gap: 16rpx; border-bottom: 1rpx solid #d8e0e8; padding-bottom: 20rpx; }
+.filter { background: transparent; color: #536373; padding: 14rpx 24rpx; font-size: 26rpx; }
+.filter.active { background: #e8eef8; color: #204d9d; }
+.task-row { border-bottom: 1rpx solid #d8e0e8; padding: 32rpx 0 16rpx; }
+.task-head { display: flex; align-items: flex-start; gap: 12rpx; }
+.task-head checkbox { transform: scale(.85); margin-left: -8rpx; }
+.task-content { flex: 1; min-width: 0; }
+.task-title { font-size: 31rpx; font-weight: 600; line-height: 1.65; overflow-wrap: break-word; }
+.task-title.done { text-decoration: line-through; color: #647382; }
+.task-date { font-size: 25rpx; color: #24519c; line-height: 1.8; margin-top: 8rpx; }
+.task-date.overdue { color: #a02a36; }
+.task-content .tag { margin-top: 12rpx; }
+.task-actions { display: flex; gap: 36rpx; padding-left: 66rpx; margin-top: 8rpx; }
+.source-image { width: 100%; margin-top: 20rpx; border-radius: 12rpx; }

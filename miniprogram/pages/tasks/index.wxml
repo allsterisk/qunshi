@@ -1,0 +1,13 @@
+<view class="page">
+  <view class="brand"><view class="brand-name">群<text>拾</text></view><button class="secondary small-button" bindtap="importMore">导入通知</button></view>
+  <view class="title">{{pending ? '接下来，一件件来。' : '事情收好，心里有数。'}}</view>
+  <view class="subtitle">{{pending}} 件待办 · {{completed}} 件已完成<view class="muted">本机保存 · 当前不发送到期提醒</view></view>
+  <view class="filters section"><button class="filter {{filter === 'pending' ? 'active' : ''}}" bindtap="setFilter" data-filter="pending">待完成 {{pending}}</button><button class="filter {{filter === 'done' ? 'active' : ''}}" bindtap="setFilter" data-filter="done">已完成 {{completed}}</button></view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view wx:if="{{!tasks.length && !error}}" class="empty"><view class="empty-title">{{filter === 'done' ? '完成的事情，会留在这里。' : '还没有待办，先收一条通知。'}}</view><view class="muted">{{filter === 'done' ? '在待完成列表中勾选事项即可。' : '把群里的报名、提交和集合通知整理到这里。'}}</view><button wx:if="{{filter === 'pending'}}" class="primary" bindtap="importMore">导入第一条通知</button></view>
+  <view wx:for="{{tasks}}" wx:key="id" class="task-row">
+    <view class="task-head"><checkbox-group bindchange="toggle" data-id="{{item.id}}"><checkbox checked="{{item.done}}" color="#245ac5" aria-label="{{item.done ? '标记为未完成' : '标记为已完成'}}"/></checkbox-group><view class="task-content"><view class="task-title {{item.done ? 'done' : ''}}">{{item.title}}</view><view class="task-date {{item.overdue ? 'overdue' : ''}}">{{item.overdue ? '日期已过 · ' : ''}}{{item.dateLabel}}</view><view wx:if="{{item.location}}" class="muted">地点：{{item.location}}</view><view wx:if="{{item.materialsText}}" class="muted">准备：{{item.materialsText}}</view><view wx:if="{{item.notes}}" class="muted">{{item.notes}}</view><view wx:if="{{!item.dueDate}}" class="tag">需要补充日期</view></view></view>
+    <view class="task-actions"><button class="plain" bindtap="showSource" data-id="{{item.id}}">看原文</button><button class="plain" bindtap="edit" data-id="{{item.id}}">编辑</button><button class="plain danger" bindtap="remove" data-id="{{item.id}}">删除</button></view>
+  </view>
+  <view wx:if="{{source}}" class="section sheet"><view class="row"><text class="section-label">通知原文</text><button class="plain" bindtap="closeSource">收起</button></view><view class="muted">{{source.title}}</view><view class="quote">{{source.text || '此通知通过截图导入，请查看下方原图。'}}</view><image class="source-image" wx:for="{{source.images}}" wx:key="*this" src="{{item}}" mode="widthFix" bindtap="preview" data-path="{{item}}"/></view>
+</view>

@@ -1,0 +1,12 @@
+{
+  "pages": ["pages/import/index", "pages/confirm/index", "pages/tasks/index"],
+  "window": {
+    "navigationBarTitleText": "群拾",
+    "navigationBarBackgroundColor": "#F6F8FA",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F6F8FA"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "permission": {}
+}

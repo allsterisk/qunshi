@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+project.private.config.json
+node_modules/
+downloads/
+*.log
+.build/
+# Keep local account identifiers and workstation addresses out of the repository.
+project.config.json
+miniprogram/config.js
+VERIFICATION.md
+.env.*
+!.env.example

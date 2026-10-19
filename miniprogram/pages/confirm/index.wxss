@@ -1,0 +1,6 @@
+.review-task { border-top: 2rpx solid #d8e0e8; padding-top: 28rpx; }
+.grow { flex: 1; }
+.source-images { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.source-images image { width: 140rpx; height: 180rpx; border-radius: 12rpx; }
+.save-note { text-align: center; margin-top: 20rpx; }
+checkbox { transform: scale(.85); }
